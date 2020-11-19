@@ -1,0 +1,194 @@
+<!doctype html>
+<!-- <html lang="en"> -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="prism.css">
+    <title>PostMaster</title>
+    <style>
+        #responsePre {
+            border-radius: 10px;
+            max-height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h1>Hello, world!</h1> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="my-3">
+            Welcome to PostMaster!
+        </h1>
+    </div>
+
+    <div class="container">
+        <!-- url box -->
+        <!-- <div class="form-group">
+            <label for="urlField">URL</label>
+            <input type="text" class="form-control" id="urlField" placeholder="Enter URL here">
+        </div> -->
+        <div class="form-row ">
+            <label class="col-sm-2 col-form-label " for="url">URL</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="url" placeholder="Enter URL here">
+            </div>
+
+        </div>
+
+        <!-- request type box -->
+        <fieldset class="form-group my-4">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Request Type</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="requestType" id="get" value="GET" checked>
+                        <label class="form-check-label" for="get">
+                            GET
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="requestType" id="post" value="POST">
+                        <label class="form-check-label" for="post">
+                            POST
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </fieldset>
+        <!-- content type box -->
+        <fieldset class="form-group my-4">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Content Type</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="contentType" id="JSONRadio" value="JSON"
+                            checked>
+                        <label class="form-check-label" for="JSONRadio">
+                            JSON
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="contentType" id="paramsRadio"
+                            value="Custom Parameters">
+                        <label class="form-check-label" for="paramsRadio">
+                            Custom parameters </label>
+                    </div>
+
+                </div>
+            </div>
+        </fieldset>
+        <!-- parameters box this will hide if JSON is selected-->
+        <div id="parametersBox">
+            <div class="form-row">
+                <label class="col-sm-2 col-form-label " for="parameterKey1">Parameter 1</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="parameterKey1" placeholder="Enter parameter 1 key">
+                </div>
+                <div class="col-md-4">
+
+                    <input type="text" class="form-control" id="parameterValue1" placeholder="Enter parameter 1 Value">
+                </div>
+
+                <button class="btn btn-primary" id="addParam">+</button>
+            </div>
+            <div id="params">
+
+            </div>
+        </div>
+
+        <!-- JSON request box this will hide on clicling JSON option on content type -->
+        <div class="form-row mt-4" id="requestJSON">
+            <label class="col-sm-2 col-form-label " for="jsonText">Your JSON</label>
+            <div class="col-md-8">
+
+                <input type="text" class="form-control" id="jsonText" placeholder='{"key": "value"}'>
+                </input>
+                <!-- <pre contenteditable class=" language-javascript " data-linenumber=" 0">
+                <code class="language-javascript" id="responseJSON">
+
+                    </code>
+                </pre> -->
+                <!-- <button class="btn btn-primary mt-4" id="submit">
+                    Submit
+                </button> -->
+            </div>
+        </div>
+        <!-- submit button which will trigger the fetch api -->
+        <div class="form-row mt-4 ">
+
+            <div class="col-md-8">
+
+                <button class="btn btn-primary" id="submit">
+                    Submit
+                </button>
+            </div>
+        </div>
+
+        <div class="form-row mt-4">
+            <label class="col-sm-2 col-form-label " for="responseJSON">Response</label>
+            <div class="col-md-8">
+                <!-- <textarea class="form-control" id="responseJSON" rows="3"
+                    placeholder="Your response will appear here."></textarea> -->
+
+                <pre id="responsePre" class="language-javascript ">
+                        <code class="language-javascript" id="responseJSON">
+                            Your response will be here.
+                        </code>
+                    </pre>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <script src="prism.js"></script>
+</body>
+
+</html>
